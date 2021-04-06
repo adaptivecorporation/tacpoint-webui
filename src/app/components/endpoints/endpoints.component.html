@@ -1,0 +1,35 @@
+<div class="section">
+    <div class="endpoints">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Endpoint Name</th>
+                    <th scope="col">Endpoint ID</th>
+                    <th scope="col">System Type</th>
+                    <th scope="col">Last Connected</th>
+                    <th scope="col">Action</th>
+    
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let rec of endpoint_list">
+                    <td>
+                        {{rec.endpoint_hostname}}
+                    </td>
+                    <td>
+                        {{rec.endpoint_id}}
+                    </td>
+                    <td>
+                        {{rec.system_type}}
+                    </td>
+                    <td>
+                        {{rec.last_connection | date: 'medium'}}
+                    </td>
+                    <td>
+                        <div class="button is-small is-success" (click)="goToEP(rec.endpoint_id)">View Endpoint</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

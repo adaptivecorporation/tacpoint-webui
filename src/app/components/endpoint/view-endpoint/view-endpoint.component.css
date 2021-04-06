@@ -1,0 +1,41 @@
+.card{
+    padding: 40px;
+    background: #fff;
+    /* border-radius: 40px; */
+    width: 800px;
+    margin: 90px auto;
+    box-shadow: 0 7px 30px -10px rgba(150,170,180,0.5);
+  }
+
+  .label{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+.select{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+  
+.button{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.flexbox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

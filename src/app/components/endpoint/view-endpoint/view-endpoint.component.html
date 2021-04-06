@@ -1,0 +1,70 @@
+<div class="sysinfo">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Boot Timestamp</th>
+                <th scope="col">Current CPU Frequency</th>
+                <th scope="col">CPU Cores</th>
+                <th scope="col" *ngFor="let rec of ep_sysinfo.cpu_usage; let i = index;">CPU Usage Core {{i}}</th>
+                <th scope="col">Hostname</th>
+                <th scope="col">Machine</th>
+                <th scope="col">Availabile Memory</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    {{ep_sysinfo.boot_timestamp | date: 'short'}}
+                </td>
+                <td>
+                    {{ep_sysinfo.cpu_freq.current}}
+                </td>
+                <td>
+                    {{ep_sysinfo.cpu_phy_cores}}
+                </td>
+                <td *ngFor="let rec of ep_sysinfo.cpu_usage;let i = index;">
+                    {{rec.percentage}}%
+                </td>
+                <td>
+                    {{ep_sysinfo.hostname}}
+                </td>
+                <td>
+                    {{ep_sysinfo.machine}}
+                </td>
+                <td>
+                    {{ep_sysinfo.mem_available}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="actions">
+    <div class="box">
+        <div class="title is-5">Node Actions</div>
+        <button class="button is-small is-info" (click)="showTaskList()">Show Tasks</button>
+    </div>
+</div>
+
+<div class="modal" [ngClass]="isTaskList ? 'is-active' : ''">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <div class="card dash-card modal-card">
+          <form [formGroup]='taskForm'>
+        <div class="label">Please Select a Task</div>
+        <div class="select is-primary">
+            <select id="task_select">
+              <option *ngFor="let rec of tasks" [value]="rec.task_id">{{rec.name}}</option>
+            </select>
+          </div>
+        <div class="label">
+            Data (JSON format)
+        </div>
+        <input class="input" (change)="inpChange();" id="json_inp" style="width: 400px" formControlName="data" [(ngModel)]="data" name="data">
+        <div class="label">Formatted JSON</div>
+        <code [highlight]="data"><pre>{{data}}</pre></code>
+        <button class="button is-success is-small" (click)="createTask()">Initiate Task</button>
+    </form>
+    </div>
+    <button class="modal-close is-large" aria-label="close" (click)="hideTaskList"></button>
+  </div>
+  </div>

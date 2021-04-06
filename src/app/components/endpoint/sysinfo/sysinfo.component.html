@@ -1,0 +1,9 @@
+<div class="section">
+    <div class="card">
+        Hostname: {{sysinfo.hostname}}<br/>
+        System: {{sysinfo.system}}<br/>
+        Total Memory: {{sysinfo.mem_total}}<br/>
+        Memory Used: {{sysinfo.mem_used}}<br/>
+        Network: <span *ngFor="let rec of sysinfo.network">Interface Address: {{rec.if_address}}<br/> Interface Name: {{rec.if_name}}<br/></span>
+    </div>
+</div>
