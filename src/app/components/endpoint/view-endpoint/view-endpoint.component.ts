@@ -62,7 +62,12 @@ export class ViewEndpointComponent implements OnInit {
   createTask(){
     var task_id = (<HTMLInputElement>document.getElementById('task_select')).value
     let d = {"target": this.ep_id, "task": task_id, "data": this.data}
-    this.ep.createTask(d).subscribe((data) => {this.toastr.success('Success.', 'Task initiated!'),(error) => {this.toastr.error('An unexpected error has occured!', 'Error!')}})
+    this.ep.createTask(d).subscribe((data) => {
+    this.toastr.success('Success.', 'Task initiated!'),
+    (error) => {
+      this.toastr.error('An unexpected error has occured!', 'Error!')
+    }
+  })
     this.isTaskList = false;
     this.data = ''
   }
