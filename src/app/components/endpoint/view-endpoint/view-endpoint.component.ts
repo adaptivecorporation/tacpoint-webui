@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { EndpointService } from 'src/app/services/endpoint.service';
-import * as $ from 'jquery';
 @Component({
   selector: 'app-view-endpoint',
   templateUrl: './view-endpoint.component.html',
@@ -68,15 +67,8 @@ export class ViewEndpointComponent implements OnInit {
     this.data = ''
   }
 
- prettyPrint() {
-    var ugly = (<HTMLInputElement>document.getElementById('json_inp')).value;
-    var obj = JSON.parse(ugly);
-    var pretty = JSON.stringify(obj, undefined);
-    (<HTMLInputElement>document.getElementById('json_inp')).value = pretty;
-}
 
-  inpChange(){
-    this.prettyPrint();
-  }
+
+
 
 }

@@ -13,7 +13,6 @@ import { SysinfoComponent } from './components/endpoint/sysinfo/sysinfo.componen
 import { ViewEndpointComponent } from './components/endpoint/view-endpoint/view-endpoint.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
-import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,17 +31,9 @@ import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
     HttpClientModule,
     CommonModule,
     ReactiveFormsModule,
-    FormsModule,
-    HighlightModule
+    FormsModule
   ],
-  providers: [
-    {
-      provide: HIGHLIGHT_OPTIONS,
-      useValue: {
-        fullLibraryLoader: () => import('highlight.js')
-      }
-    }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

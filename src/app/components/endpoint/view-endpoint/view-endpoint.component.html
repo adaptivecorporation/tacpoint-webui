@@ -59,9 +59,7 @@
         <div class="label">
             Data (JSON format)
         </div>
-        <input class="input" (change)="inpChange();" id="json_inp" style="width: 400px" formControlName="data" [(ngModel)]="data" name="data">
-        <div class="label">Formatted JSON</div>
-        <code [highlight]="data"><pre>{{data}}</pre></code>
+        <input class="input" id="json_inp" style="width: 400px" formControlName="data">
         <button class="button is-success is-small" (click)="createTask()">Initiate Task</button>
     </form>
     </div>
