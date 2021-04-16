@@ -10,6 +10,7 @@ import { EndpointService } from 'src/app/services/endpoint.service';
 })
 export class ViewEndpointComponent implements OnInit {
 
+  hostname: string;
   taskForm: FormGroup;
   data: string;
   tasks: any = [];
@@ -38,6 +39,7 @@ export class ViewEndpointComponent implements OnInit {
     this.ep.getSysInfo(this.ep_id).subscribe(
       (data) => {
         this.ep_sysinfo = data['sysinfo']
+        this.hostname = data['sysinfo']['hostname']
         console.log(data)
       }
     )
@@ -62,7 +64,8 @@ export class ViewEndpointComponent implements OnInit {
   createTask(){
     var task_id = (<HTMLInputElement>document.getElementById('task_select')).value
     let d = {"target": this.ep_id, "task": task_id, "data": this.data}
-    this.ep.createTask(d).subscribe((data) => {
+    if(this.data != ''){
+      this.ep.createTask(d).subscribe((data) => {
     this.toastr.success('Success.', 'Task initiated!'),
     (error) => {
       this.toastr.error('An unexpected error has occured!', 'Error!')
@@ -70,6 +73,17 @@ export class ViewEndpointComponent implements OnInit {
   })
     this.isTaskList = false;
     this.data = ''
+}
+    if(this.data = ''){
+      this.ep.createTask(d).subscribe((data) => {
+        this.toastr.success('Success.', 'Task initiated!'),
+        (error) => {
+          this.toastr.error('An unexpected error has occured!', 'Error!')
+        }
+      })
+        this.isTaskList = false;
+        this.data = ''
+    }
   }
 
 

@@ -5,11 +5,13 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SysinfoComponent } from './components/endpoint/sysinfo/sysinfo.component';
 import { ViewEndpointComponent } from './components/endpoint/view-endpoint/view-endpoint.component';
 import { EndpointsComponent } from './components/endpoints/endpoints.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   {
-    path: '', pathMatch: 'full', redirectTo: '/app/dashboard'
+    path: '', pathMatch: 'full', redirectTo: '/login'
   },
+  {path: 'login', component: LoginComponent},
   {path: 'app', component: LayoutComponent, children: [
     {path: 'dashboard', component: DashboardComponent},
     {path: 'endpoints', component: EndpointsComponent},

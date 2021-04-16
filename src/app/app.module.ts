@@ -13,6 +13,8 @@ import { SysinfoComponent } from './components/endpoint/sysinfo/sysinfo.componen
 import { ViewEndpointComponent } from './components/endpoint/view-endpoint/view-endpoint.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { httpHeaderProvider } from './interceptor';
+import { LoginComponent } from './components/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +23,8 @@ import { ToastrModule } from 'ngx-toastr';
     HeaderComponent,
     EndpointsComponent,
     SysinfoComponent,
-    ViewEndpointComponent
+    ViewEndpointComponent,
+    LoginComponent
   ],
   imports: [
     ToastrModule.forRoot(),
@@ -33,7 +36,7 @@ import { ToastrModule } from 'ngx-toastr';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [httpHeaderProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

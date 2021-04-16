@@ -1,1 +1,60 @@
-<p>dashboard works!</p>
+<div class="section">
+    <div class="title is-4">Tacpoint Dashboard</div>
+    <div class="subtitle">Endpoint Management</div>
+    <div class="dash">
+    <div class="columns">
+        <div class="column">
+            <div class="card dash-card has-text-centered">
+                <div class="title is-5">Endpoints</div>
+                <div class="content">{{endpoint_count}}</div>
+            </div>
+            </div>
+        <div class="column">
+            <div class="card dash-card has-text-centered">
+                <div class="title is-5">Incomplete Tasks</div>
+                <div class="content">{{task_count}}<br/>
+                <button class="button is-small is-success" (click)="showModal();">Show Tasks</button></div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="modal" [ngClass]="isShowModal ? 'is-active' : ''">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <div class="card modal-card">
+          <table>
+              <thead>
+                  <tr>
+              <th>Task ID</th>
+              <th>Task</th>
+              <th>Target</th>
+              <th>Completed</th>
+              <th>Date Created</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let rec of dashinfo.tasks">
+                    <td>
+                        <a href="#">{{rec.task_id}}</a>
+                    </td>
+                    <td>
+                        {{rec._task_name}}
+                    </td>
+                    <td>
+                        {{rec.endpoint_hostname}}
+                    </td>
+                    <td>
+                        {{rec.is_complete ? 'Yes':'No'}}
+                    </td>
+                    <td>
+                        {{rec.date_created | date: 'MM/dd/YY'}}
+                    </td>
+                </tr>
+            </tbody>
+          </table>
+    </div>
+    <button class="modal-close is-large" aria-label="close" (click)="closeModal();"></button>
+  </div>
+  </div>

@@ -1,0 +1,22 @@
+<div class="bg">
+<div class="section">
+    
+    <div class="columns is-centered">
+        <div class="column is-half">
+            <div class="card has-text-centered">
+                <form [formGroup]="loginForm">
+                <div class="title is-5 has-text-centered">Tacpoint</div>
+                <div class="label has-text-centered">Username</div>
+                <div class="center-inp">
+                <input class="input" name="username" formControlName="username" [(ngModel)]="username">
+                </div>
+                <div class="label has-text-centered">Password</div>
+                <div class="center-inp">
+                <input class="input" name="password" type="password" formControlName="password" [(ngModel)]="password"><br/>
+                </div>
+                <button class="button is-success" (click)="logIn()">Log In</button>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>

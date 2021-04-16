@@ -6,4 +6,8 @@ export class Constants {
     public static INIT_K8S = "tasks/initk8s";
     public static GET_TASKS = Constants.API_URL + "tasks/list";
     public static CREATE_TASK = Constants.API_URL + "tasks/create";
+    public static DASH_INFO = Constants.API_URL + "dashinfo";
+
+    // AUTH
+    public static AUTH_LOGIN = Constants.API_URL + "auth/login";
 }

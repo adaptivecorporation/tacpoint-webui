@@ -1,3 +1,6 @@
+<div class="section">
+    <div class="title is-4 has-text-centered">{{hostname}}</div>
+    <div class="card">
 <div class="sysinfo">
     <table class="table table-striped">
         <thead>
@@ -38,12 +41,21 @@
         </tbody>
     </table>
 </div>
-<div class="actions">
-    <div class="box">
-        <div class="title is-5">Node Actions</div>
-        <button class="button is-small is-info" (click)="showTaskList()">Show Tasks</button>
+</div>
+<div class="columns is-centered action-columns">
+    <div class="column is-half">
+        <div class="actions">
+            <div class="box has-text-centered">
+                <div class="title is-5 has-text-centered">Node Actions</div>
+                <button class="button is-small is-info" (click)="showTaskList()">Show Tasks</button>
+                
+                
+            </div>
+        </div>
     </div>
 </div>
+</div>
+
 
 <div class="modal" [ngClass]="isTaskList ? 'is-active' : ''">
     <div class="modal-background"></div>
@@ -59,7 +71,7 @@
         <div class="label">
             Data (JSON format)
         </div>
-        <input class="input" id="json_inp" style="width: 400px" formControlName="data">
+        <input class="input" id="json_inp" style="width: 400px" formControlName="data" [(ngModel)]="data">
         <button class="button is-success is-small" (click)="createTask()">Initiate Task</button>
     </form>
     </div>
