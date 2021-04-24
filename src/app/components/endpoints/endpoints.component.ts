@@ -23,6 +23,7 @@ export class EndpointsComponent implements OnInit {
     this.ep.getEndpoints().subscribe(
       (data) => {
         this.endpoint_list = data['endpoints']
+        console.log('endpoints>>>', this.endpoint_list)
       }
     )
   }

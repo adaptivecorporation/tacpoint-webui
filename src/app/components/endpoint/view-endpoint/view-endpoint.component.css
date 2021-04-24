@@ -55,3 +55,41 @@
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
   }
+
+.center-img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.network{
+    display: grid;
+    grid-template-columns: 500px 500px 500px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+}
+
+.drives-card{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.drives{
+    display: grid;
+    grid-template-columns: 500px 500px 500px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+}
+
+.btn-refresh{
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}
+
+.button-group{
+    position: relative;
+}

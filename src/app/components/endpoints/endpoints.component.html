@@ -1,35 +1,27 @@
 <div class="section">
+    <div class="title is-4 has-text-centered">Endpoints</div>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+
+
+        <div class="navbar-menu" id="navbar-menu">
+            <div class="navbar-start">
+                    <a class="navbar-item">
+                        Connect Endpoint
+                    </a>
+            </div>
+            <div class="navbar-end">
+                <a class="navbar-item">
+                    
+                </a>
+            </div>
+        </div>
+    </nav>
     <div class="endpoints">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">Endpoint Name</th>
-                    <th scope="col">Endpoint ID</th>
-                    <th scope="col">System Type</th>
-                    <th scope="col">Last Connected</th>
-                    <th scope="col">Action</th>
-    
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let rec of endpoint_list">
-                    <td>
-                        {{rec.endpoint_hostname}}
-                    </td>
-                    <td>
-                        {{rec.endpoint_id}}
-                    </td>
-                    <td>
-                        {{rec.system_type}}
-                    </td>
-                    <td>
-                        {{rec.last_connection | date: 'medium'}}
-                    </td>
-                    <td>
-                        <div class="button is-small is-success" (click)="goToEP(rec.endpoint_id)">View Endpoint</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="endpoint" *ngFor="let rec of endpoint_list" (click)="goToEP(rec.endpoint_id)">
+        <img src="/assets/img/ep.svg" height=100 width=100 class="ep-img">
+        <h3 class="endpoint-name has-text-centered">{{rec.endpoint_hostname}}</h3>
+        <h5 class="has-text-centered">Last Connection</h5>
+        <h5 class="last-connection has-text-centered">{{rec.last_connection | date: 'MM/dd/yy hh:mm:ss a'}}</h5>
+    </div>
     </div>
 </div>

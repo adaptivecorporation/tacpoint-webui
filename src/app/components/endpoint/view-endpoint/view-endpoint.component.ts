@@ -40,7 +40,6 @@ export class ViewEndpointComponent implements OnInit {
       (data) => {
         this.ep_sysinfo = data['sysinfo']
         this.hostname = data['sysinfo']['hostname']
-        console.log(data)
       }
     )
   }
@@ -51,6 +50,11 @@ export class ViewEndpointComponent implements OnInit {
         this.tasks = data['tasks']
       }
     )
+  }
+
+  refresh(){
+    this.getSysInfo();
+    this.listTasks();
   }
 
   showTaskList(){

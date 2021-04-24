@@ -1,5 +1,13 @@
 <div class="section">
     <div class="title is-4 has-text-centered">{{hostname}}</div>
+    <div class="button-group">
+    <div class="button btn-refresh is-success is-small" (click)="refresh();">Refresh</div>
+    </div>
+    <div class="os-logo">
+        <img src="/assets/img/windows.png" height=50 width=50 class="center-img" *ngIf="ep_sysinfo.system == 'Windows'">
+        <img src="/assets/img/linux.png" height=50 width=50 class="center-img" *ngIf="ep_sysinfo.system != 'Windows'">
+    </div>
+    <img src="/assets/img/ep.svg" height=200 width=200 class="center-img">
     <div class="card">
 <div class="sysinfo">
     <table class="table table-striped">
@@ -41,6 +49,47 @@
         </tbody>
     </table>
 </div>
+</div>
+<hr>
+<div class="columns is-centered">
+    <div class="column is-half">
+        <div class="systeminfo">
+            <div class="card sysinfo-card">
+                <div class="title is-4">System Info</div>
+                <p>Processor: {{ep_sysinfo.proc}}<br/>
+                Swap Free: {{ep_sysinfo.swap_free}}<br/>
+                Swap Percentage: {{ep_sysinfo.swap_percentage}}%<br/>
+                Swap Total: {{ep_sysinfo.swap_total}}<br/>
+                Swap Used: {{ep_sysinfo.swap_used}}<br/>
+                Operating System: {{ep_sysinfo.system}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="title is-5 has-text-centered">Network</div>
+<div class="network">
+    
+    <div class="card has-text-centered network-card" *ngFor="let rec of ep_sysinfo.network">
+        <div class="title is-5">{{rec.if_name}}</div>
+        <div class="content">
+            Address: {{rec.if_addr}}
+        </div>
+    </div>
+</div>
+<hr>
+<div class="title is-5 has-text-centered">Drives</div>
+<div class="drives">
+    <div class="card has-text-centered drives-card" *ngFor="let rec of ep_sysinfo.partitions">
+        <div class="title is-5">{{rec.device}}</div>
+        <div class="content">
+            Mountpoint: {{rec.mountpoint}}<br/>
+            Free Space: {{rec.partition_free}}<br/>
+            Used Space: {{rec.partition_used}}<br/>
+            Total Size: {{rec.partition_total_size}}<br/>
+            Percentage Used: {{rec.percentage_used}}%<br/>
+        </div>
+    </div>
 </div>
 <div class="columns is-centered action-columns">
     <div class="column is-half">
