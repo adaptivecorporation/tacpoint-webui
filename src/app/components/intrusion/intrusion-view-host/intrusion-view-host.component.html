@@ -1,0 +1,197 @@
+<div class="section">
+    <div class="box host-box center">
+<div class="title is-4 has-text-centered">{{sysInfo.hostname}}</div>
+<div class="os-logo">
+    <img src="/assets/img/windows.png" height=50 width=50 class="center-img" *ngIf="sysInfo.system == 'Windows'">
+    <img src="/assets/img/linux.png" height=50 width=50 class="center-img" *ngIf="sysInfo.system != 'Windows'">
+</div>
+<img src="/assets/img/ep.svg" height=200 width=200 class="center-img">
+</div>
+<div class="sysinfo">
+    <div class="card">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Boot Timestamp</th>
+                <th scope="col"  *ngIf="sysInfo.cpu_freq.current">Current CPU Frequency</th>
+                <th scope="col">CPU Cores</th>
+                <th scope="col" *ngFor="let rec of sysInfo.cpu_usage; let i = index;">CPU Usage Core {{i}}</th>
+                <th scope="col">Hostname</th>
+                <th scope="col">Machine</th>
+                <th scope="col">Availabile Memory</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    {{sysInfo.boot_timestamp | date: 'short'}}
+                </td>
+                <td *ngIf="sysInfo.cpu_freq.current">
+                    {{sysInfo.cpu_freq.current}}
+                </td>
+                <td>
+                    {{sysInfo.cpu_phy_cores}}
+                </td>
+                <td *ngFor="let rec of sysInfo.cpu_usage;let i = index;">
+                    {{rec.percentage}}%
+                </td>
+                <td>
+                    {{sysInfo.hostname}}
+                </td>
+                <td>
+                    {{sysInfo.machine}}
+                </td>
+                <td>
+                    {{sysInfo.mem_available}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+<hr>
+<div class="title is-4 has-text-centered">Network and Process Activity</div>
+<div class="columns">
+    <div class="column">
+        <div class="card">
+            <div class="title is-4 has-text-centered">Processes</div>
+            <div class="button-row ">
+                <div class="field is-grouped is-grouped-multiline center">
+                    <p class="control">
+                      <a class="button" (click)="changeNoItemsPerPageNetstat('10')">
+                        10
+                      </a>
+                    </p>
+                    <p class="control">
+                      <a class="button" (click)="changeNoItemsPerPageProc('20')">
+                        20
+                      </a>
+                    </p>
+                    <p class="control">
+                      <a class="button" (click)="changeNoItemsPerPageProc('30')">
+                        30
+                      </a>
+                    </p>
+                    <p class="control">
+                      <a class="button" (click)="changeNoItemsPerPageProc('50')">
+                        50
+                      </a>
+                    </p>
+                    <p class="control">
+                        <a class="button" (click)="changeNoItemsPerPageProc('100')">
+                          100
+                        </a>
+                      </p>
+                      <p class="control">
+                        <a class="button" (click)="changeNoItemsPerPageProc('200')">
+                          200
+                        </a>
+                      </p>
+                
+                  </div>
+            </div>
+        <input class="input" [(ngModel)]="procSearchText">
+        <div class="procs" *ngFor="let rec of procs | filter:procSearchText | paginate: { id: 'pg_proc',  itemsPerPage: noOfItemPerPageProc, currentPage: p_proc }">
+            <p>Process Name: {{rec.processName}} | Process ID: {{rec.processID}}</p>
+            </div>
+            <pagination-controls id="pg_proc" (pageChange)="p_proc = $event"></pagination-controls>
+        </div>
+    </div>
+    <div class="column">
+        <div class="card has-text-centered">
+            <div class="title is-4 has-text-centered">Netstat</div>
+            <div class="button-row ">
+                <div class="field is-grouped is-grouped-multiline center">
+                    <p class="control">
+                      <a class="button" (click)="changeNoItemsPerPageNetstat('10')">
+                        10
+                      </a>
+                    </p>
+                    <p class="control">
+                      <a class="button" (click)="changeNoItemsPerPageNetstat('20')">
+                        20
+                      </a>
+                    </p>
+                    <p class="control">
+                      <a class="button" (click)="changeNoItemsPerPageNetstat('30')">
+                        30
+                      </a>
+                    </p>
+                    <p class="control">
+                      <a class="button" (click)="changeNoItemsPerPageNetstat('50')">
+                        50
+                      </a>
+                    </p>
+                    <p class="control">
+                        <a class="button" (click)="changeNoItemsPerPageNetstat('100')">
+                          100
+                        </a>
+                      </p>
+                      <p class="control">
+                        <a class="button" (click)="changeNoItemsPerPageNetstat('200')">
+                          200
+                        </a>
+                      </p>
+                
+                  </div>
+            </div>
+            <input class="input" [(ngModel)]="netstatSearchText">
+            <div class="netstat" *ngFor="let rec of netstat.netstat | filter:netstatSearchText | paginate: { id: 'pg_netstat',  itemsPerPage: noOfItemPerPageNetstat, currentPage: p_netstat }">
+                <p>{{rec[0]}} <---> {{rec[1]}}</p>
+            </div>
+            <pagination-controls id="pg_netstat" (pageChange)="p_netstat = $event"></pagination-controls>
+        </div>
+    </div>
+    <div class="column">
+        <div class="card">
+            <div class="title is-4 has-text-centered">IP Reputation Results</div>
+            <div class="button is-success is-small center-img" (click)="researchNetstatResults();">Research Netstat Results</div>
+            <div class="button-row">
+                <div class="field is-grouped is-grouped-multiline">
+                    <p class="control">
+                      <a class="button" (click)="changeNoItemsPerPage('5')">
+                        5
+                      </a>
+                    </p>
+                    <p class="control">
+                      <a class="button" (click)="changeNoItemsPerPage('10')">
+                        10
+                      </a>
+                    </p>
+                    <p class="control">
+                      <a class="button" (click)="changeNoItemsPerPage('20')">
+                        20
+                      </a>
+                    </p>
+                    <p class="control">
+                      <a class="button" (click)="changeNoItemsPerPage('30')">
+                        30
+                      </a>
+                    </p>
+                    <p class="control">
+                      <a class="button" (click)="changeNoItemsPerPage('50')">
+                        50
+                      </a>
+                    </p>
+                
+                  </div>
+            </div>
+            <input class="input" [(ngModel)]="ipRepSearchText">
+            <div class="ip-rep" *ngFor="let rec of ip_rep_arr | filter:ipRepSearchText | paginate: { id: 'pg_iprep', itemsPerPage: noOfItemPerPage, currentPage: p }">
+                <b>{{rec.ip}}</b>
+                <p>{{rec.information.reverse_dns}}</p>
+                <p>ISP: {{rec.information.isp}}<br/>
+                Type: Location: {{rec.information.city_name}}, {{rec.information.region_name}}<br/>
+                Blacklist Detections: {{rec.blacklists.detections}}<br/>Risk Score: {{rec.risk_score}}<br/><br/>
+                Is Webhost: {{rec.anonymity.is_hosting ? 'Yes':'No'}}<br/>
+                Is Proxy: {{rec.anonymity.is_proxy ? 'Yes':'No'}}<br/>
+                Is TOR: {{rec.anonymity.is_tor ? 'Yes':'No'}}.<br/>
+                Is VPN: {{rec.anonymity.is_vpn ? 'Yes':'No'}}<br/>
+                Is Web Proxy: {{rec.anonymity.is_webproxy ? 'Yes':'No'}}<br/></p>
+            </div>
+            <pagination-controls id="pg_iprep" (pageChange)="p = $event"></pagination-controls>
+        </div>
+    </div>
+</div>
+
+</div>

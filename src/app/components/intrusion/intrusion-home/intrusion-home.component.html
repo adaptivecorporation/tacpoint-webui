@@ -1,0 +1,12 @@
+<div class="section">
+    <div class="title is-4">TACpoint Intrusion Detection Monitoring</div>
+    <div class="subtitle">Hosts</div>
+    <div class="hosts">
+        <div class="card">
+        <div class="host" *ngFor="let rec of host_data" (click)="viewHost(rec.key)">
+            <img src="/assets/img/ep.svg" height=100 width=100 class="host-img">
+            <h3 class="host-name has-text-centered">{{rec.hostname}}</h3>
+        </div>
+    </div>
+    </div>
+</div>

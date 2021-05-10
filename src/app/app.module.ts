@@ -15,6 +15,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { httpHeaderProvider } from './interceptor';
 import { LoginComponent } from './components/login/login.component';
+import { IntrusionHomeComponent } from './components/intrusion/intrusion-home/intrusion-home.component';
+import { IntrusionViewHostComponent } from './components/intrusion/intrusion-view-host/intrusion-view-host.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +28,9 @@ import { LoginComponent } from './components/login/login.component';
     EndpointsComponent,
     SysinfoComponent,
     ViewEndpointComponent,
-    LoginComponent
+    LoginComponent,
+    IntrusionHomeComponent,
+    IntrusionViewHostComponent
   ],
   imports: [
     ToastrModule.forRoot(),
@@ -34,7 +40,9 @@ import { LoginComponent } from './components/login/login.component';
     HttpClientModule,
     CommonModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule,
+    Ng2SearchPipeModule
   ],
   providers: [httpHeaderProvider],
   bootstrap: [AppComponent]

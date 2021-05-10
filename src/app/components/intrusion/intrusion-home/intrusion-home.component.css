@@ -1,0 +1,33 @@
+.hosts{
+    margin-top: 25px;
+    display: grid;
+    grid-template-columns: 200px 200px 200px 200px;
+}
+
+.hosts h3 {
+    font-weight: 500;
+    font-size: 12px;
+    color: #373737;
+    margin-top: 5px;
+  }
+
+  .hosts h5 {
+    font-weight: 800;
+    font-size: 8px;
+    color: #373737;
+    margin-top: 5px;
+  }
+
+  .host-img{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.card{
+    padding: 40px;
+    background: #fff;
+    /* border-radius: 40px; */
+    width: 100%;
+    box-shadow: 0 7px 30px -10px rgba(150,170,180,0.5);
+  }
