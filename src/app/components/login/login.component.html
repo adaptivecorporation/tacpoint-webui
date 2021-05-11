@@ -1,7 +1,7 @@
 <div class="bg">
-<div class="section">
+
     
-    <div class="columns is-centered">
+    <div *ngIf="!isMobile" class="columns is-centered">
         <div class="column is-half">
             <div class="card has-text-centered">
                 <form [formGroup]="loginForm">
@@ -19,4 +19,22 @@
             </div>
         </div>
     </div>
-</div>
+
+    <div *ngIf="isMobile" class="columns">
+        <div class="column">
+            <div class="card-mobile has-text-centered">
+                <form [formGroup]="loginForm">
+                <div class="title is-5 has-text-centered">Tacpoint</div>
+                <div class="label has-text-centered">Username</div>
+                
+                <input class="input" name="username" formControlName="username" [(ngModel)]="username">
+               
+                <div class="label has-text-centered">Password</div>
+        
+                <input class="input" name="password" type="password" formControlName="password" [(ngModel)]="password"><br/>
+             
+                <button class="button is-success" (click)="logIn()">Log In</button>
+            </form>
+            </div>
+        </div>
+    </div>

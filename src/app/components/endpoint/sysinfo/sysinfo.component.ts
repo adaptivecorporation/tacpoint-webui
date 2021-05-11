@@ -20,7 +20,6 @@ export class SysinfoComponent implements OnInit {
     this.ep.getSysInfo(this.ep_id).subscribe(
       (data) => {
         this.sysinfo = data['sysinfo']
-        console.log(this.sysinfo)
       }
     )
   }

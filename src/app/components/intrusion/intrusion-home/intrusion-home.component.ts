@@ -21,7 +21,6 @@ export class IntrusionHomeComponent implements OnInit {
     this.intrusion.get_hosts().subscribe(
       (data) => {
         this.host_data = data['intrusion']
-        console.log(this.host_data)
       }
     )
   }

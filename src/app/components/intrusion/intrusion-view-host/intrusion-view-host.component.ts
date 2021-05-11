@@ -62,7 +62,6 @@ export class IntrusionViewHostComponent implements OnInit {
     this.intrusion.getNetstat(this.host_id).subscribe(
       (data) => {
         this.netstat = data['netstat']
-        console.log(this.netstat)
       }
     )
   }
@@ -94,11 +93,9 @@ export class IntrusionViewHostComponent implements OnInit {
   getIPRepResults(){
     this.intrusion.getIPRepResults().subscribe(
       (data) => {
-        console.log(data)
         data['ip_rep'].forEach(elem => {
           let app = {"ip": elem['report']['ip'], "anonymity": elem['report']['anonymity'], "information": elem['report']['information'], "blacklists": elem['report']['blacklists'], "risk_score": elem['report']['risk_score']['result']}
-          this.ip_rep_arr.push(app)
-          console.log(this.ip_rep_arr)          
+          this.ip_rep_arr.push(app)          
         });
       }
     )
@@ -108,7 +105,6 @@ export class IntrusionViewHostComponent implements OnInit {
     this.intrusion.get_host_by_id(this.host_id).subscribe(
       (data) => {
         this.host_data = data['host']
-        console.log(this.host_data)
       }
     )
   }
