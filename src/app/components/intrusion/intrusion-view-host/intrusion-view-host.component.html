@@ -8,45 +8,27 @@
 <img src="/assets/img/ep.svg" height=200 width=200 class="center-img">
 </div>
 <div class="sysinfo">
-    <div class="card">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">Boot Timestamp</th>
-                <th scope="col"  *ngIf="sysInfo.cpu_freq.current">Current CPU Frequency</th>
-                <th scope="col">CPU Cores</th>
-                <th scope="col" *ngFor="let rec of sysInfo.cpu_usage; let i = index;">CPU Usage Core {{i}}</th>
-                <th scope="col">Hostname</th>
-                <th scope="col">Machine</th>
-                <th scope="col">Availabile Memory</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    {{sysInfo.boot_timestamp | date: 'short'}}
-                </td>
-                <td *ngIf="sysInfo.cpu_freq.current">
-                    {{sysInfo.cpu_freq.current}}
-                </td>
-                <td>
-                    {{sysInfo.cpu_phy_cores}}
-                </td>
-                <td *ngFor="let rec of sysInfo.cpu_usage;let i = index;">
-                    {{rec.percentage}}%
-                </td>
-                <td>
-                    {{sysInfo.hostname}}
-                </td>
-                <td>
-                    {{sysInfo.machine}}
-                </td>
-                <td>
-                    {{sysInfo.mem_available}}
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="sysinfo-card card has-text-centered">
+        <div class="title is-5">System Info</div>
+                <p *ngIf="sysInfo.cpu_freq.current">
+                    Current CPU Frequency: {{sysInfo.cpu_freq.current}}
+                </p>
+                <p>
+                    CPU Cores: {{sysInfo.cpu_phy_cores}}
+                </p>
+                <p *ngFor="let rec of sysInfo.cpu_usage;let i = index;">
+                    CPU Usage Core {{i}}: {{rec.percentage}}%
+                </p>
+                <p>
+                    Hostname: {{sysInfo.hostname}}
+                </p>
+                <p>
+                    Machine: {{sysInfo.machine}}
+                </p>
+                <p>
+                    Available Memory: {{sysInfo.mem_available}}
+                </p>
+ 
 </div>
 </div>
 <hr>
@@ -92,9 +74,9 @@
             </div>
         <input class="input" [(ngModel)]="procSearchText">
         <div class="procs" *ngFor="let rec of procs | filter:procSearchText | paginate: { id: 'pg_proc',  itemsPerPage: noOfItemPerPageProc, currentPage: p_proc }">
-            <p>Process Name: {{rec.processName}} | Process ID: {{rec.processID}}</p>
+            <p>Process Name: <a>{{rec.processName}}</a> | Process ID: {{rec.processID}}</p>
             </div>
-            <pagination-controls id="pg_proc" (pageChange)="p_proc = $event"></pagination-controls>
+            <pagination-controls id="pg_proc" class="center" (pageChange)="p_proc = $event"></pagination-controls>
         </div>
     </div>
     <div class="column">
